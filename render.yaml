@@ -1,9 +1,11 @@
 services:
   - type: web
-    name: flask-dashboard
-    env: python
-    buildCommand: ""
-    startCommand: gunicorn -b 0.0.0.0:$PORT app:app
+    name: dgp
+    runtime: python
+    buildCommand: "./build.sh"  # Make sure this points to the build script
+    startCommand: "gunicorn --bind :5000 --workers 1 --timeout 120 app:app"
     envVars:
-      - key: FLASK_ENV
-        value: production
+      - key: MONGO_URI
+        value: "mongodb+srv://vgugan16:gugan2004@cluster0.qyh1fuo.mongodb.net/golang?retryWrites=true&w=majority"
+      - key: DEPLOYMENT_ENV
+        value: "production"
