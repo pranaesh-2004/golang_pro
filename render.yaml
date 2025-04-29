@@ -3,7 +3,7 @@ services:
     name: flask-dashboard
     env: python
     buildCommand: ""
-    startCommand: "gunicorn --bind :5000 --workers 1 --timeout 120 app:app"
+    startCommand: gunicorn -b 0.0.0.0:$PORT app:app
     envVars:
       - key: FLASK_ENV
         value: production
